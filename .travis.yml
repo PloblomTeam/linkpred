@@ -15,12 +15,11 @@ before_install:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
 install:
-    - pip install coverage
-    - pip install coveralls
     - DEPS="networkx numpy scipy matplotlib pyyaml"
     - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran
-    - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION $DEPS nose
+    - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION $DEPS
     - source activate test-environment
+    - pip install --upgrade coverage coveralls nose
 script: 
     - printenv PWD
     - pip install .
